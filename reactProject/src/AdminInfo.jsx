@@ -25,7 +25,7 @@ export default function AdminInfo() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/sobe", { withCredentials: true })
+      .get(`${process.env.REACT_APP_API_URL}/sobe`, { withCredentials: true })
       .then((response) => {
         setRendersoba(response.data);
       })
@@ -47,7 +47,7 @@ export default function AdminInfo() {
   if (!window.confirm("Jeste li sigurni da želite obrisati ovu sobu?")) return;
 
   try {
-    await axios.delete(`http://localhost:8080/sobe/${id}`, { withCredentials: true });
+    await axios.delete(`${process.env.REACT_APP_API_URL}/sobe/${id}`, { withCredentials: true });
     setRendersoba((prev) => prev.filter((soba) => soba.id !== id));
     
   } catch (error) {
@@ -66,7 +66,7 @@ export default function AdminInfo() {
     try {
       if (isEditing && editingSoba) {
         const response = await axios.put(
-          `http://localhost:8080/sobe/${editingSoba.id}`,
+          `${process.env.REACT_APP_API_URL}/sobe/${id}/sobe/${editingSoba.id}`,
           novaSoba,
           { withCredentials: true }
         );
@@ -75,7 +75,7 @@ export default function AdminInfo() {
         );
       } else {
         const response = await axios.post(
-          "http://localhost:8080/sobe",
+          `${process.env.REACT_APP_API_URL}/sobe/${id}/sobe`,
           novaSoba,
           { withCredentials: true }
         );
