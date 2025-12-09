@@ -25,7 +25,7 @@ export default function AdminInfo() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/sobe`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_API_URL}/sobe`, { withCredentials: false })
       .then((response) => {
         setRendersoba(response.data);
       })
